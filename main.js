@@ -1,9 +1,11 @@
-const { app, BrowserWindow, globalShortcut } = require('electron')
-const {clipboard} = require('electron')
+const { app, BrowserWindow, globalShortcut,ipcMain } = require('electron')
+const ListenClipBoard = require('./clipboard')
 
+let listenClipBoard;
+let win = null;
 function createWindow () {   
   // 创建浏览器窗口
-  const win = new BrowserWindow({
+   win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
@@ -18,18 +20,17 @@ function createWindow () {
 }
 
 app.whenReady().then(createWindow).then(() => {
-  setInterval(() => {
-    // console.log('xxx',clipboard.readText());
-  }, 1000);
+    listenClipBoard = new ListenClipBoard()
+    listenClipBoard.on('clip-change', (val) => {
+      win.webContents.send('render', val)
+    })
 })
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    globalShortcut.unregister("Ctrl+X");
-	  // 注销所有快捷键
-	  globalShortcut.unregisterAll();
+    listenClipBoard.destroy();
     app.quit()
   }
 
