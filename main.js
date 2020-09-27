@@ -1,11 +1,11 @@
 const { app, BrowserWindow, globalShortcut,ipcMain } = require('electron')
 const ListenClipBoard = require('./clipboard')
 
-let listenClipBoard;
-let win = null;
+let listenClipBoard
+let win = null
 function createWindow () {   
   // 创建浏览器窗口
-   win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
