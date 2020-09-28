@@ -1,8 +1,10 @@
-const { app, BrowserWindow, globalShortcut,ipcMain } = require('electron')
+const { app, BrowserWindow, globalShortcut,Menu, MenuItem, ipcMain, remote, clipboard } = require('electron')
 const ListenClipBoard = require('./clipboard')
+const menu = new Menu()
 
 let listenClipBoard
 let win = null
+let clipInfo = []
 function createWindow () {   
   // 创建浏览器窗口
   win = new BrowserWindow({
@@ -20,8 +22,13 @@ function createWindow () {
 }
 
 app.whenReady().then(createWindow).then(() => {
+    globalShortcut.register('CommandOrControl+option+C', () => {
+      console.log('CommandOrControl+option+C is pressed')
+      win.show()
+    })
     listenClipBoard = new ListenClipBoard()
     listenClipBoard.on('clip-change', (val) => {
+      clipInfo = val;
       win.webContents.send('render', val)
     })
 })
@@ -31,6 +38,7 @@ app.whenReady().then(createWindow).then(() => {
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     listenClipBoard.destroy();
+    globalShortcut.unregisterAll()
     app.quit()
   }
 

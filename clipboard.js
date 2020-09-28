@@ -9,6 +9,7 @@ class ListenClipBoard extends EventEmitter {
         this.lastTexts = []
         this.listenClipBoard()
     }
+
     listenClipBoard() {
         this.destroyTimer();
         this.timer = setInterval(() => {
@@ -18,7 +19,6 @@ class ListenClipBoard extends EventEmitter {
 
     pushText(text) {
         let index = this.lastTexts.indexOf(text)
-        
         if (index === 0) return
         if (index === -1) {
             this.lastTexts.unshift(text)
