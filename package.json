@@ -19,6 +19,8 @@
   "homepage": "https://github.com/lokialone/roco-tools#readme",
   "dependencies": {
     "electron": "^10.1.2",
-    "mousetrap": "^1.6.5"
+    "mousetrap": "^1.6.5",
+    "react": "^16.13.1",
+    "tesseract.js": "^2.1.3"
   }
 }
