@@ -1,28 +1,36 @@
 const React = require('react')
-const path = require('path')
 const reactDom = require('react-dom')
 import { Nav } from '@alifd/next'
-import { Switch, Route, HashRouter} from 'react-router-dom';
+import { Switch, Route, HashRouter, Link} from 'react-router-dom'
 import '@alifd/next/dist/next.css'
 import TimerPage from './pages/timer'
-const utils = require('./utils/index')
+import Record from './pages/record/index'
+import { Box } from '@alifd/next'
+import "./assets/index.less"
+
 const { Item } = Nav 
 
-utils.test()
 function App () {
     return (<HashRouter>
         <Nav className="basic-nav" type="primary" direction="hoz"  header="hello tool" defaultSelectedKeys={['home']} triggerType="hover">
-        <Item key="home"><Link to="/">Home</Link></Item> 
-        <Item key="Timer"><Link to="/Timer">Timer</Link></Item>
-        </Nav>  
-        <Switch>
-        <Route path="/Timer">
-            <TimerPage />
-        </Route>
-        <Route path="/">
-            <div>xx3x</div>
-        </Route>
-        </Switch>
+            <Item key="home"><Link to="/">Home</Link></Item> 
+            <Item key="Timer"><Link to="/timer">Timer</Link></Item>
+            <Item key="Record"><Link to="/record">Record</Link></Item>
+        </Nav>
+        <Box direction="row" align="center" padding={20}>
+            <Switch>
+                <Route path="/timer">
+                    <TimerPage />
+                </Route>
+                <Route path="/record">
+                    <Record />
+                </Route>
+                <Route path="/">
+                    <div>xx3x</div>
+                </Route>
+            </Switch>
+        </Box>
+
     </HashRouter>
     )
 }

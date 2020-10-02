@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "dependencies": {
     "@alifd/next": "^1.20.28",
     "babel": "^6.23.0",
+    "echarts": "^4.9.0",
     "moment": "^2.29.0",
     "mousetrap": "^1.6.5",
     "react": "^16.13.1",
@@ -42,5 +44,10 @@
     "style-loader": "^1.2.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }
