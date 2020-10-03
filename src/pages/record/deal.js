@@ -66,16 +66,20 @@ export default function deal(data) {
     }
 
     data.split('\n').forEach((line) => {
-        dealLineInfo(line);
+        if (line) {
+            dealLineInfo(line);
+        } 
     })
     const result = {};
     let validate = 0;
     const validateMap = ['study', 'work', 'tech', 'plan'];
     const basicMap = ['sleep', 'daily', 'daily-road'];
     let basicTime = 0;
+    let total = 0;
     Object.keys(tagsInfo).forEach((key)=> {
         const tagInfo = tagsInfo[key]; 
         tagInfo.timeStr =formatTimeDuration(tagInfo.time);
+        total += tagInfo.time;
         if (validateMap.includes(key)) {
             validate += tagInfo.time;
         } 
@@ -87,6 +91,7 @@ export default function deal(data) {
     });
     result.validate = formatTimeDuration(validate);
     result.basic = formatTimeDuration(basicTime);
+    result.total = formatTimeDuration(total);
 
     return {
         result,
