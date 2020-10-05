@@ -1,13 +1,26 @@
 {
   "name": "roco-tools",
   "version": "1.0.0",
-  "description": "",
+  "description": "roco-tools for lokia",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron .",
-    "dev": "webpack-dev-server",
-    "watch": "webpack --watch"
+    "start": "webpack-dev-server",
+    "dev": "NODE_ENV=dev electron .",
+    "watch": "webpack --watch",
+    "build": "webpack && NODE_ENV=production electron ",
+    "pack": "electron-builder --dir",
+    "dist": "webpack && electron-builder"
+  },
+  "build": {
+    "appId": "test",
+    "mac": {
+      "category": "tools"
+    },
+    "files": [
+      "build/**/*",
+      "main.js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -31,6 +44,7 @@
     "tesseract.js": "^2.1.3"
   },
   "devDependencies": {
+    "electron": "10.1.1",
     "@babel/core": "^7.11.6",
     "@babel/plugin-transform-react-jsx-development": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
@@ -38,6 +52,7 @@
     "@webpack-cli/serve": "^0.2.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.3.0",
+    "electron-builder": "^22.8.1",
     "html-webpack-plugin": "^4.5.0",
     "less": "^3.12.2",
     "less-loader": "^7.0.1",

@@ -1,3 +1,4 @@
+import { Notification }  from '@alifd/next';
 const tags = [
     'study',
     'sleep',
@@ -58,9 +59,14 @@ export default function deal(data) {
                 tagsInfo[tag].time += time;
                 tagsInfo[tag].items.push({timeStr: timeStr, duration: time, durationStr: formatTimeDuration(time) , thing: str.slice(index)});
                 return true;
-            };
+            }
         });
         if (!flag) {
+            Notification.open({
+                title: '不存在当前tag',
+                content: str,
+                type: 'error'
+            });
             throw new Error(str);
         }
     }
