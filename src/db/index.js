@@ -1,13 +1,16 @@
-import Datastore from 'lowdb';
+import Datastore from 'lowdb'
 import FileSync from 'lowdb/adapters/FileSync'
 import { app, remote } from 'electron'
+import fs from 'fs-extra'
 
+console.log('process.type------>', process.type,remote, app)
 // 根据process.type来分辨在哪种模式使用哪种模块
 const APP = process.type === 'renderer' ? remote.app : app
 
+
 // 获取electron应用的用户目录
 const STORE_PATH = APP.getPath('userData')
-// console.log(STORE_PATH)
+console.log(STORE_PATH)
 
 if (process.type !== 'renderer') {
     // 如果不存在路径

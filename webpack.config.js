@@ -1,14 +1,17 @@
 const path =  require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
-    target: 'node',
+    target: 'electron-renderer',
     output: {
         path: path.resolve(__dirname, './build'),
         filename: 'main.js'
     },
+    externals: {
+        electron: 'electron'
+    },
     resolve: {
         alias: {
-          '@': path.resolve(__dirname, 'src')
+            '@': path.resolve(__dirname, 'src')
         }
     },
     module: {

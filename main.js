@@ -1,5 +1,7 @@
-const { app, BrowserWindow, globalShortcut,Menu, MenuItem, ipcMain, remote, clipboard } = require('electron')
+const { app, BrowserWindow, globalShortcut,Menu} = require('electron')
 // const ListenClipBoard = require('./clipboard')
+
+console.log('app',app)
 const menu = new Menu()
 const path = require('path')
 // let listenClipBoard
