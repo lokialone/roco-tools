@@ -17,7 +17,7 @@ function App () {
             <Item key="Timer"><Link to="/timer">Timer</Link></Item>
             <Item key="Record"><Link to="/record">Record</Link></Item>
         </Nav>
-        <Box direction="row" align="center" padding={20}>
+        <Box direction="row" align="center">
             <Switch>
                 <Route path="/timer">
                     <TimerPage />

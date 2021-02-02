@@ -6,6 +6,11 @@ module.exports = {
         path: path.resolve(__dirname, './build'),
         filename: 'main.js'
     },
+    resolve: {
+        alias: {
+          '@': path.resolve(__dirname, 'src')
+        }
+    },
     module: {
     	// 配置相应的规则
         rules: [
@@ -36,6 +41,8 @@ module.exports = {
         template: 'index.html'
     })],
     devServer: {
-        port: 8080
+        host: '0.0.0.0',
+        port: 8080,
+        liveReload: true,
     }
 }
