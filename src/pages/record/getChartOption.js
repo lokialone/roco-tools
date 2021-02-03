@@ -1,4 +1,4 @@
-const option = {
+const TimeOption = {
     backgroundColor: '#2c343c',
     title: {
         text: '时间记录',
@@ -57,7 +57,7 @@ const option = {
     ]
 };
 
-export default function(data) {
+export default function(data, option = TimeOption) {
     option.series[0].data = Object.keys(data).reduce((acc, current) => {
         acc.push({
             name: current,

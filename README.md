@@ -4,4 +4,3 @@
 
 ```
 npm run start  //open page
-npm run dev// open electron

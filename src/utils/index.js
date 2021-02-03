@@ -10,5 +10,8 @@ export default {
     },
     getToday() {
         return moment().format(format);
+    },
+    getWeekday() {
+        
     }
 }

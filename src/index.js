@@ -1,12 +1,19 @@
-const React = require('react')
-const reactDom = require('react-dom')
+import React, { Fragment } from 'react'
+import reactDom from 'react-dom'
 import { Nav } from '@alifd/next'
 import { Switch, Route, HashRouter, Link} from 'react-router-dom'
 import '@alifd/next/dist/next.css'
 import TimerPage from './pages/timer'
 import Record from './pages/record/index'
+import Report from './pages/report/index'
 import { Box } from '@alifd/next'
 import "./assets/index.less"
+
+import { AppContainer as ReactHotContainer } from 'react-hot-loader'
+
+const AppContainer = process.env.NODE_ENV === 'development' ? ReactHotContainer : Fragment
+
+
 
 const { Item } = Nav 
 
@@ -16,6 +23,7 @@ function App () {
             <Item key="home"><Link to="/">Home</Link></Item> 
             <Item key="Timer"><Link to="/timer">Timer</Link></Item>
             <Item key="Record"><Link to="/record">Record</Link></Item>
+            <Item key="Report"><Link to="/report">report</Link></Item>
         </Nav>
         <Box direction="row" align="center">
             <Switch>
@@ -25,8 +33,11 @@ function App () {
                 <Route path="/record">
                     <Record />
                 </Route>
+                <Route path="/report">
+                    <Report />
+                </Route>
                 <Route path="/">
-                    <div>xx3x</div>
+                     <Record />
                 </Route>
             </Switch>
         </Box>
@@ -35,7 +46,9 @@ function App () {
     )
 }
 const app = document.getElementById('app')
-reactDom.render(<App></App>, app)
+reactDom.render(<AppContainer>
+    <App/>
+</AppContainer>,app)
 
 
 

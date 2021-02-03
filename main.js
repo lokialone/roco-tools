@@ -13,16 +13,18 @@ function createWindow () {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      enableRemoteModule: true
     }
   })
 
+  win.loadURL('http://localhost:8080')
   // 并且为你的应用加载index.html
-  if (process.env.NODE_ENV === 'dev') {
-    win.loadURL('http://localhost:8080')
-  } else {
-    win.loadFile(path.join(__dirname, 'build/index.html'));
-  }
+  // if (process.env.NODE_ENV === 'dev') {
+  //   win.loadURL('http://localhost:8080')
+  // } else {
+  //   win.loadFile(path.join(__dirname, 'build/index.html'));
+  // }
  
   // 打开开发者工具
   win.webContents.openDevTools()
